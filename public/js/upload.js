@@ -37,7 +37,7 @@ $(document).ready(function () {
 
         var urlParam={
             action:'preview value',
-            url:'preview/data',
+            url:'./preview/data',
             mrn:parseInt(mrn)
         }
 
@@ -64,7 +64,6 @@ $(document).ready(function () {
     }
 
     function make_preview_image(i,filepath,type){
-        let app_url = $('#app_url').val();
         let filetype = type.split('/')[0];
         let fileextension = type.split('/')[1];
         let return_value='';
@@ -72,8 +71,8 @@ $(document).ready(function () {
         if(filetype=='image'){
             return_value = `
                 <div class="imgcontainer">
-                    <img src="`+app_url+`thumbnail/`+filepath+`" >
-                      <a class="small circular orange ui icon button btn" target="_blank" href="`+app_url+`uploads/`+filepath+`">
+                    <img src="./thumbnail/`+filepath+`" >
+                      <a class="small circular orange ui icon button btn" target="_blank" href="./uploads/`+filepath+`">
                           <i class='search icon' ></i>
                       </a>
                 </div>`;
@@ -82,23 +81,23 @@ $(document).ready(function () {
             switch(fileextension){
                 case 'pdf': return_value =  `
                                     <div class="imgcontainer">
-                                        <img src="`+app_url+`thumbnail/application/pdf">
-                                          <a class="small circular orange ui icon button btn" target="_blank" href="`+app_url+`uploads/`+filepath+`" >
+                                        <img src="./thumbnail/application/pdf">
+                                          <a class="small circular orange ui icon button btn" target="_blank" href="./uploads/`+filepath+`" >
                                               <i class='search icon' ></i>
                                           </a>
                                     </div>`; 
 
                             break;
 
-                default: return_value = app_url+'thumbnail/application/pdf';
+                default: return_value = './thumbnail/application/pdf';
 
             }
 
         }else if(filetype=='video'){
             return_value =  `
                             <div class="imgcontainer">
-                                <img src="`+app_url+`thumbnail/video/video">
-                                  <a class="small circular orange ui icon button btn" target="_blank" href="`+app_url+`uploads/`+filepath+`" >
+                                <img src="./thumbnail/video/video">
+                                  <a class="small circular orange ui icon button btn" target="_blank" href="./uploads/`+filepath+`" >
                                       <i class='search icon' ></i>
                                   </a>
                             </div>`; 
@@ -117,7 +116,7 @@ $(document).ready(function () {
         let filetype = type.split('/')[0];
         let fileextension = type.split('/')[1];
 
-        return `<a class='small circular orange basic ui icon button' href="/download/`+filepath+`?filename=`+filename+`" data-index="`+i+`"><i class="download icon"></i></a>`
+        return `<a class='small circular orange basic ui icon button' href="./download/`+filepath+`?filename=`+filename+`" data-index="`+i+`"><i class="download icon"></i></a>`
         
     }
 

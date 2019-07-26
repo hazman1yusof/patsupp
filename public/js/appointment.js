@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 				var session_param ={
 					action:"get_table_default",
-					url:'./util/get_table_default',
+					url:$('#util_tab').val(),
 					field:'*',
 					table_name:'hisdb.apptsession',
 					table_id:'idno',
@@ -226,7 +226,7 @@ $(document).ready(function() {
 
             	var session_param ={
 					action:"get_value_default",
-					url:'/util/get_table_default',
+					url:$('#util_tab').val(),
 					field:'*',
 					table_name:'hisdb.apptsession',
 					table_id:'idno',

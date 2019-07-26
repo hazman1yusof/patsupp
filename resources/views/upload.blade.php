@@ -41,7 +41,6 @@
 <input id="_token" name="_token" type="hidden" value="{{ csrf_token() }}">
 <input type="hidden" name="mrn" id="mrn" value="{{Request::get('mrn')}}">
 <input type="hidden" name="episno" id="episno" value="{{Request::get('episno')}}">
-<input id="app_url" name="app_url" type="hidden" value="{{ env('APP_URL') }}">
 
 <div class="ui teal segment" style="padding-bottom: 30px;">
 	<h4 class="ui header">Upload an Image</h4>
@@ -107,7 +106,7 @@
 	</table>
 </div>
 
-<div class="ui mini modal">
+<!-- <div class="ui mini modal">
   <i class="close icon"></i>
   <div class="image content">
     <div class="description">
@@ -125,7 +124,7 @@
       <i class="checkmark icon"></i>
     </div>
   </div>
-</div>
+</div> -->
 
 @endsection
 
