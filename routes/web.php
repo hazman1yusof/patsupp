@@ -71,6 +71,8 @@ Route::put('/ticket/{ticket}', "TicketController@update");
 Route::get('/preview','PreviewController@preview');
 Route::get('/preview/data','PreviewController@previewdata');
 
+Route::get('/previewvideo/{id}','PreviewController@previewvideo');
+
 Route::get('/upload','PreviewController@upload');
 Route::post('/upload','PreviewController@form');
 

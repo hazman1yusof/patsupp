@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
+    var mom;
     function formatDate_mom(date,format,returnformat = 'DD-MM-YYYY'){
-        let mom = moment(date, format);
+        mom = moment(date, format);
         return mom.format(returnformat);
     }
 
@@ -49,7 +50,7 @@ $(document).ready(function () {
                     obj.auditno = obj.auditno; 
                     obj.trxdate = formatDate_mom(obj.trxdate,'YYYY-MM-DD HH:mm:ss');
                     obj.filename = obj.resulttext;
-                    obj.preview = make_preview_image(i,obj.attachmentfile,obj.type);
+                    obj.preview = make_preview_image(i,obj.attachmentfile,obj.type,obj.auditno);
                     obj.mrn = obj.mrn;
                     obj.type = obj.type;
                     obj.adduser = obj.adduser;
@@ -63,39 +64,53 @@ $(document).ready(function () {
         });
     }
 
-    function make_preview_image(i,filepath,type){
-        let app_url = $('#app_url').val();
+    function make_preview_image(i,filepath,type,auditno){
         let filetype = type.split('/')[0];
         let fileextension = type.split('/')[1];
         let return_value='';
 
         if(filetype=='image'){
             return_value = `
-            	<div class="imgcontainer">
-            		<img src="`+app_url+`thumbnail/`+filepath+`" >
-  					<a class="small circular orange ui icon button btn" target="_blank" href="`+app_url+`uploads/`+filepath+`">
-  						<i class='search icon' ></i>
-  					</a>
-            	</div>`;
+                <div class="imgcontainer">
+                    <img src="./thumbnail/`+filepath+`" >
+                      <a class="small circular orange ui icon button btn" target="_blank" href="./uploads/`+filepath+`">
+                          <i class='search icon' ></i>
+                      </a>
+                </div>`;
 
         }else if(filetype=='application'){
             switch(fileextension){
                 case 'pdf': return_value =  `
-            						<div class="imgcontainer">
-                						<img src="`+app_url+`thumbnail/application/pdf">
-					  					<a class="small circular orange ui icon button btn" target="_blank" href="`+app_url+`uploads/`+filepath+`" >
-					  						<i class='search icon' ></i>
-					  					</a>
-					            	</div>`; 
+                                    <div class="imgcontainer">
+                                        <img src="./thumbnail/application/pdf">
+                                          <a class="small circular orange ui icon button btn" target="_blank" href="./uploads/`+filepath+`" >
+                                              <i class='search icon' ></i>
+                                          </a>
+                                    </div>`; 
 
-                			break;
+                            break;
 
-                default: return_value = app_url+'thumbnail/application/pdf';
+                case 'pdf': return_value =  `
+                                    <div class="imgcontainer">
+                                        <img src="./thumbnail/application/pdf">
+                                          <a class="small circular orange ui icon button btn" target="_blank" href="./uploads/`+filepath+`" >
+                                              <i class='search icon' ></i>
+                                          </a>
+                                    </div>`; 
+
+                            break;
 
             }
 
         }else if(filetype=='video'){
-            return_value = app_url+'thumbnail/video';
+            return_value =  `
+                            <div class="imgcontainer">
+                                <img src="./thumbnail/video/video">
+                                  <a class="small circular orange ui icon button btn" target="_blank" href="./previewvideo/`+auditno+`" >
+                                      <i class='search icon' ></i>
+                                  </a>
+                            </div>`; 
+                                    
 
         }else{
             return_value = 'download';
@@ -110,21 +125,15 @@ $(document).ready(function () {
         let filetype = type.split('/')[0];
         let fileextension = type.split('/')[1];
 
-        return `<a class='small circular orange basic ui icon button' href="/download/`+filepath+`?filename=`+filename+`" data-index="`+i+`"><i class="download icon"></i></a>`
+        return `<a class='small circular orange basic ui icon button' href="./download/`+filepath+`?filename=`+filename+`" data-index="`+i+`"><i class="download icon"></i></a>`
         
     }   
 
     $('#biodob').text(formatDate_mom($('#biodob').text(),'YYYY-MM-DD'));
 
     $("#bioage").text(getAge($('#biodob').text()));
+
     function getAge(dateString) {
-        var today = new Date();
-        var birthDate = new Date(dateString);
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
-        return age;
+        moment().diff(mom, 'years');
     }
 });

@@ -2,7 +2,7 @@
 
 @section('content')
 	<h1>Post Question</h1>
-	<form class="ui form" method="POST" action="/ticket/create">
+	<form class="ui form" method="POST" action="{{ url('/ticket/create') }}">
 		<div class="ui segment">
             <div class="ui error message"></div>
 			{{csrf_field()}}

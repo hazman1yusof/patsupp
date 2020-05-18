@@ -4,6 +4,7 @@
 @include('layouts.ticketFilter')	
 
 	<input type="hidden" id="scroll_btm" value="">
+	<input id="url" name="url" type="hidden" value="{{url('')}}">
 	<a class="positive ui button" href="/ticket/create">Ask a Question</a>
 
 	<h4 class="ui horizontal divider header">Question List</h4>

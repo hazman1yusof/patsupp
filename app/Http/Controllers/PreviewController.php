@@ -42,6 +42,14 @@ class PreviewController extends Controller
         return json_encode($responce);
     }
 
+    public function previewvideo($auditno)
+    {   
+        $video = DB::table('hisdb.patresult')->where('auditno','=',$auditno)->first();
+        return view('previewvideo',compact('video'));
+    }
+
+    
+
     public function uploaddata(Request $request)
     {
         

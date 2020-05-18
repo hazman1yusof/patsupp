@@ -42,6 +42,7 @@
 <input id="_token" name="_token" type="hidden" value="{{ csrf_token() }}">
 <input type="hidden" name="mrn" id="mrn" value="{{$user->MRN}}">
 <input id="app_url" name="app_url" type="hidden" value="{{ env('APP_URL') }}">
+<input id="url" name="url" type="hidden" value="{{url('')}}">
 
 <div class='row' style="padding-top: 15px">
 	<div class="panel panel-default">

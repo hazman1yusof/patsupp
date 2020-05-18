@@ -49,7 +49,7 @@ $(document).ready(function () {
                     obj.auditno = obj.auditno; 
                     obj.trxdate = formatDate_mom(obj.trxdate,'YYYY-MM-DD HH:mm:ss');
                     obj.filename = obj.resulttext;
-                    obj.preview = make_preview_image(i,obj.attachmentfile,obj.type);
+                    obj.preview = make_preview_image(i,obj.attachmentfile,obj.type,obj.auditno);
                     obj.mrn = obj.mrn;
                     obj.type = obj.type;
                     obj.adduser = obj.adduser;
@@ -63,7 +63,7 @@ $(document).ready(function () {
         });
     }
 
-    function make_preview_image(i,filepath,type){
+    function make_preview_image(i,filepath,type,auditno){
         let filetype = type.split('/')[0];
         let fileextension = type.split('/')[1];
         let return_value='';
@@ -89,7 +89,15 @@ $(document).ready(function () {
 
                             break;
 
-                default: return_value = './thumbnail/application/pdf';
+                case 'pdf': return_value =  `
+                                    <div class="imgcontainer">
+                                        <img src="./thumbnail/application/pdf">
+                                          <a class="small circular orange ui icon button btn" target="_blank" href="./uploads/`+filepath+`" >
+                                              <i class='search icon' ></i>
+                                          </a>
+                                    </div>`; 
+
+                            break;
 
             }
 
@@ -97,7 +105,7 @@ $(document).ready(function () {
             return_value =  `
                             <div class="imgcontainer">
                                 <img src="./thumbnail/video/video">
-                                  <a class="small circular orange ui icon button btn" target="_blank" href="./uploads/`+filepath+`" >
+                                  <a class="small circular orange ui icon button btn" target="_blank" href="./previewvideo/`+auditno+`" >
                                       <i class='search icon' ></i>
                                   </a>
                             </div>`; 

@@ -69,7 +69,8 @@ $(document).ready(function() {
 	});
 
 	$('.card').click(function(){
-		location.assign("/ticket/"+$(this).data('id'));
+        let url = $('#url').val();
+		location.assign(url+"/ticket/"+$(this).data('id'));
 	});
 
 	$('#submitMessage').dropdown({
