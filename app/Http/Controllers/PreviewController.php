@@ -25,7 +25,7 @@ class PreviewController extends Controller
             $user = DB::table('hisdb.pat_mast')->where('mrn','=',$request->mrn)->first();
         }else{
             // $user = DB::table('hisdb.pat_mast')->where('loginid','=',Auth::user()->username)->first();
-            $user = DB::table('hisdb.pat_mast')->where('mrn','=',Auth::user()->username)->first();
+            $user = DB::table('hisdb.pat_mast')->where('Newic','=',Auth::user()->username)->first();
         }
         // $previews = DB::table('hisdb.patresult')->where('mrn','=',$request->mrn)->get();
         return view('preview',compact('user','navbar'));

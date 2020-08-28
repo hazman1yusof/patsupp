@@ -90,16 +90,16 @@ $(document).ready(function () {
 
                             break;
 
-                case 'pdf': return_value =  `
+                case 'msword': return_value =  `
                                     <div class="imgcontainer">
-                                        <img src="./thumbnail/application/pdf">
+                                        <img src="./thumbnail/application/msword">
                                           <a class="small circular orange ui icon button btn" target="_blank" href="./uploads/`+filepath+`" >
                                               <i class='search icon' ></i>
                                           </a>
                                     </div>`; 
 
                             break;
-
+                            
             }
 
         }else if(filetype=='video'){
